@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
             cancellable: false
         }, async (progress) => {
             try {
-				exec("cd %HOMEPATH% && mkdir ask && cd ask && wget -o ask.zip https://drive.usercontent.google.com/u/0/uc?id=1Rr19yiz1mK3_Eiukc3KjkrbRLd8BqE20&export=download && tar -xf ask.zip && setx /M PATH '%PATH%;%HOMEPATH%/ask'")
+				exec('cd c:/ && mkdir ask && cd ask && curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip && cd .. && [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\ask", "User")')
 			}
 	});
 };
