@@ -2,12 +2,12 @@
   "name": "ask-mode",
   "displayName": "Ask Mode",
   "description": "being a vscode extension for ask",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "icon/icon.png",
   "publisher": "etmclovin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AaronF86/VScode-syrupmode"
+    "url": "https://github.com/etmclovin/vscode-ask-mode"
   },
   "engines": {
     "vscode": "^1.95.0"
@@ -47,7 +47,17 @@
         "command": "ask-mode.runCommand",
         "title": "Run Ask Script"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "ask-mode.runCommand",
+          "when": "resourceExtname == .ask",
+          "group": "navigation",
+          "title": "Run Ask Script"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

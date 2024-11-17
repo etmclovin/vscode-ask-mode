@@ -18,9 +18,17 @@ Everything is windows only atm, if you want this extension on your system contac
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release
+
+### 0.0.2
+
+Added Repository to package.json
+
+### 0.0.3
+
+Added a run button
 
 ## Special Thanks
 
