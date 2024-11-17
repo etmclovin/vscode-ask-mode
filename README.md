@@ -1,4 +1,4 @@
-# ask-mode README
+# VSCode ask-mode
 
 being a VSCode extension for ask
 
