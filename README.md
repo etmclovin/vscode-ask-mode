@@ -22,6 +22,9 @@ Everything is windows only atm, if you want this extension on your system contac
 
 Initial release
 
+## Special Thanks
 
+Alot of this extension was repurposed code from VSCode-syrupmode by AaronF86 
+(Link: https://github.com/AaronF86/VScode-syrupmode)
 
 **Enjoy!**
