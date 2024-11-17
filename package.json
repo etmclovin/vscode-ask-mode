@@ -34,7 +34,7 @@
     "grammars": [
       {
         "language": "ask",
-        "scopeName": "source.ask",
+        "scopeName": "syntax.ask",
         "path": "src/syntaxes/ask.tmLanguage.json"
       }
     ],

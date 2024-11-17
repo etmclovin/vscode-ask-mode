@@ -1,5 +1,5 @@
 {
-"scopeName": "source.ask",
+"scopeName": "syntax.ask",
     "patterns": [
         {
             "name": "comment.line.ask",
@@ -12,7 +12,7 @@
         },
         {
             "name": "keyword.control.ask",
-            "match": "\\b(where|define|defined|test|tested|by|from|inductively|given|prove|proven)\\b"
+            "match": "\\b(where|define|defined|test|tested|by|from|inductively|given|prove|proven|data)\\b"
         },
         {
             "name": "keyword.operator.ask",
