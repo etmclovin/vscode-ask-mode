@@ -3,7 +3,7 @@
   "displayName": "Ask Mode",
   "description": "being a vscode extension for ask",
   "version": "0.0.1",
-  "icon": "icon/syruplogo.png",
+  "icon": "icon/icon.png",
   "engines": {
     "vscode": "^1.95.0"
   },
