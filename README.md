@@ -30,6 +30,10 @@ Added Repository to package.json
 
 Added a run button
 
+### 0.0.3
+
+Fixed syntax highlighting issue (thanks to @AaronF86)
+
 ## Special Thanks
 
 Alot of this extension was repurposed code from VSCode-syrupmode by AaronF86 
