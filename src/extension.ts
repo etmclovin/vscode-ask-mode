@@ -63,5 +63,5 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage(`An error occurred: ${errorMessage}`);
 			}
 		});
-	}
+	});
 }
