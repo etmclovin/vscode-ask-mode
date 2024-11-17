@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		exec(`ask "${filePath}"`, (error, stdout, stderr) => {
 			if (error) {
-				vscode.window.showErrorMessage(`Error running Syrup script: ${stderr}`);
+				vscode.window.showErrorMessage(`Error running Ask script: ${stderr}`);
 				return;
 			}
 			const output = stdout;
@@ -44,12 +44,24 @@ export function activate(context: vscode.ExtensionContext) {
             cancellable: false
         }, async (progress) => {
             try {
-				exec("cd %HOMEPATH% && mkdir ask && cd ask && wget -o ask.zip https://drive.usercontent.google.com/u/0/uc?id=1Rr19yiz1mK3_Eiukc3KjkrbRLd8BqE20&export=download && tar -xf ask.zip && setx /M PATH '%PATH%;%HOMEPATH%/ask'")
-			}
-	});
-};
 
-// This method is called when your extension is deactivated
-export function deactivate() {
-	console.log('Ask-mode extension deactivated.');
+				const child = spawn('powershell.exe', ['-c', 'cd c:/ ; mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; $Env:Foo = (Get-ItemProperty HKCU:\Environment).PATH ; [Environment]::SetEnvironmentVariable("Path", "$env:Foo;C:/ask", "User")']); // Replace with your PowerShell command
+
+				child.stdout.on('data', (data: any) => {
+					console.log(`Powershell Output: ${data}`);
+				});
+
+				child.stderr.on('error', (error: any) => {
+					vscode.window.showErrorMessage(`Error installing Ask: ${error}`);
+					return;
+				});
+
+				vscode.window.showInformationMessage('Ask installed successfully!, Reload Vscode to use it!');
+
+			} catch (err: unknown) {
+				const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+				vscode.window.showErrorMessage(`An error occurred: ${errorMessage}`);
+			}
+		});
+	}
 }

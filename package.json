@@ -34,8 +34,8 @@
     ],
     "commands": [
       {
-        "command": "ask-mode.helloWorld",
-        "title": "Hello World"
+        "command": "ask-mode.setupCommand",
+        "title": "Install Ask (Windows only)"
       },
       {
         "command": "ask-mode.runCommand",
