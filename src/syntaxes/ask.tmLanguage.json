@@ -3,7 +3,7 @@
     "patterns": [
         {
             "name": "comment.line.ask",
-            "match": "--.*$"
+            "match": "--.*$|{-.*$|-}.*$"
         },
         {
             "name": "string.quoted.ask",
