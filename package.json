@@ -2,7 +2,7 @@
   "name": "ask-mode",
   "displayName": "Ask Mode",
   "description": "being a vscode extension for ask",
-  "version": "0.0.6",
+  "version": "0.1.0-prerelease",
   "icon": "icon/icon.png",
   "publisher": "etmclovin",
   "repository": {
@@ -41,7 +41,7 @@
     "commands": [
       {
         "command": "ask-mode.setupCommand",
-        "title": "Install Ask (Windows only)"
+        "title": "Install Ask"
       },
       {
         "command": "ask-mode.runCommand",
