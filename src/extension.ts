@@ -1,5 +1,3 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { exec, spawn } from 'child_process';
 
@@ -45,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
         }, async (progress) => {
             try {
 
-				const child = spawn('powershell.exe', ['-c', 'cd c:/ ; mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; $Env:Foo = (Get-ItemProperty HKCU:\Environment).PATH ; [Environment]::SetEnvironmentVariable("Path", "$env:Foo;C:/ask", "User")']); // Replace with your PowerShell command
+				const child = spawn('powershell.exe', ['-c', 'cd c:/ ; mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; $Env:Foo = (Get-ItemProperty HKCU:\Environment).PATH ; [Environment]::SetEnvironmentVariable("Path", "$env:Foo;C:/ask", "User")']);
 
 				child.stdout.on('data', (data: any) => {
 					console.log(`Powershell Output: ${data}`);
