@@ -24,7 +24,7 @@
         },
         {
             "name": "support.class.ask",
-            "match": "Number|Formula|Bit"
+            "match": "\\b[A-Z][a-z]*\\b"
         },
         {
             "name": "entity.name.function.ask",
