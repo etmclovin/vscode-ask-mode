@@ -75,12 +75,12 @@ export function activate(context: vscode.ExtensionContext) {
 				// exec(`mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; del ask.zip`
 				switch(process.platform) {
 					case ("win32"): {
-						exec(`mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; del ask.zip`,(error, stdout, stderr) => {
+						exec(`mkdir ask && cd ask && curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" && tar -xf ask.zip && del ask.zip`,(error, stdout, stderr) => {
 							if (error) {
 								vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
 								return;
 							}
-							vscode.window.showInformationMessage(`Error installing ask: ${stdout}`);
+							vscode.window.showInformationMessage(`installing ask: ${stdout}`);
 						});
 						vscode.window.showInformationMessage('Ask installed successfully!');
 						break;
