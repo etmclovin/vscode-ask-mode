@@ -2,7 +2,7 @@
   "name": "ask-mode",
   "displayName": "Ask Mode",
   "description": "being a vscode extension for ask",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "icon": "icon/icon.png",
   "publisher": "etmclovin",
   "repository": {
