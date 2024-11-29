@@ -12,11 +12,11 @@
         },
         {
             "name": "keyword.control.ask",
-            "match": "\\b(where|define|defined|test|tested|by|from|inductively|given|prove|proven|data)\\b"
+            "match": "\\b(where|define|defined|test|tested|by|from|inductively|given|prove|proven|data|grammar|parse|parsed)\\b"
         },
         {
             "name": "keyword.operator.ask",
-            "match": "->|[->|:|=]"
+            "match": "->|[->|:|=|||<]"
         },
         {
             "name": "variable.other.ask",
@@ -24,7 +24,7 @@
         },
         {
             "name": "support.class.ask",
-            "match": "\\b[A-Z][a-z]*\\b"
+            "match": "\\b[A-Z][A-Za-z0-9]*\\b"
         },
         {
             "name": "entity.name.function.ask",
