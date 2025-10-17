@@ -17,11 +17,9 @@ export function activate(context: vscode.ExtensionContext) {
 		const folderPath = vscode.workspace.rootPath;
 		const filePath = editor.document.uri.fsPath;
 		editor.document.save();
-		switch(process.platform) {
-			case ("win32"): {
-				exec(`./ask/ask "${filePath}"`,{shell:"powershell.exe"}, (error, stdout, stderr) => {
+		exec(`ask "${filePath}"`, (error, stdout, stderr) => {
 					if (error) {
-						vscode.window.showErrorMessage(`Error running Ask script: ${stderr}, have you ran the install ask command?`);
+						vscode.window.showErrorMessage(`Error running Ask script: ${stderr}, have you installed ask?`);
 						return;
 					}
 					editor.edit(builder => {
@@ -29,91 +27,60 @@ export function activate(context: vscode.ExtensionContext) {
 						builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), stdout);
 					});
 				});
-				break;
-			}
-			case ("darwin"): {
-				exec(`cd ${folderPath}/.askignore && ./ask "${filePath}"`, (error, stdout, stderr) => {
-					if (error) {
-						vscode.window.showErrorMessage(`Error running Ask script: ${stderr}, have you ran the install ask command?`);
-						return;
-					}
-					editor.edit(builder => {
-						const doc = editor.document;
-						builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), stdout);
-					});
-					});
-					break;
-			}
-			case ("linux"): {
-				exec(`cd ${folderPath}/.askignore && ask "${filePath}"`, (error, stdout, stderr) => {
-					if (error) {
-						vscode.window.showErrorMessage(`Error running Ask script: ${stderr}`);
-						return;
-					}
-					editor.edit(builder => {
-						const doc = editor.document;
-						builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), stdout);
-					});
-					});
-					break;
-			}
-			default: {
-				vscode.window.showErrorMessage('Operating System not supported');
-				break;
-			}
-		};
 	});
 		
-	const setupCommand = vscode.commands.registerCommand("ask-mode.setupCommand", () =>{
-		vscode.window.withProgress({
-            location: vscode.ProgressLocation.Notification,
-            title: 'Installing Ask...',
-            cancellable: false
-        }, async (progress) => {
-            try {
-				const folderPath = vscode.workspace.rootPath;
-				// exec(`mkdir ask ; cd ask ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" ; tar -xf ask.zip ; del ask.zip`
-				switch(process.platform) {
-					case ("win32"): {
-						exec(`mkdir ask && cd ask && curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" && tar -xf ask.zip && del ask.zip`,(error, stdout, stderr) => {
-							if (error) {
-								vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
-								return;
-							}
-							vscode.window.showInformationMessage(`installing ask: ${stdout}`);
-						});
-						vscode.window.showInformationMessage('Ask installed successfully!');
-						break;
-					}
-					case ("darwin"): {
-						exec(`cd ${folderPath} ; mkdir .askignore ; cd .askignore ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/mac.zip" ; tar -xf ask.zip ; rm ask.zip`, (error, stdout, stderr) => {
-							if (error) {
-								vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
-								return;
-							}
-						});
-						vscode.window.showInformationMessage('Ask installed successfully!');
-						break;
-					}
-					case ("linux"): {
-						exec(`cd ${folderPath} ; mkdir .askignore ; cd .askignore ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/linux.zip" ; tar -xf ask.zip ; rm ask.zip`, (error, stdout, stderr) => {
-							if (error) {
-								vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
-								return;
-							}
-						});
-						vscode.window.showInformationMessage('Ask installed successfully!');
-						break;
-					}
-					default: {
-						vscode.window.showErrorMessage(`Operating system not supported`);
-						return;
-					}
-				}
-			} catch (err: unknown) {
-				const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
-				vscode.window.showErrorMessage(`An error occurred: ${errorMessage}`);
-			}
-		});
-	});
+
+	// Below was the code for installing a prebuilt version of ask, i have since removed this feature as it required constant maintenence and was very shoddy at best. instead you must install ask yourself
+
+	// const setupCommand = vscode.commands.registerCommand("ask-mode.setupCommand", () =>{
+	// 	vscode.window.withProgress({
+    //         location: vscode.ProgressLocation.Notification,
+    //         title: 'Installing Ask...',
+    //         cancellable: false
+    //     }, async (progress) => {
+    //         try {
+	// 			const folderPath = vscode.workspace.rootPath;
+	// 			switch(process.platform) {
+	// 				case ("win32"): {
+	// 					exec(`mkdir ask && cd ask && curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/ask.zip" && tar -xf ask.zip && del ask.zip`,(error, stdout, stderr) => {
+	// 						if (error) {
+	// 							vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
+	// 							return;
+	// 						}
+	// 						vscode.window.showInformationMessage(`installing ask: ${stdout}`);
+	// 					});
+	// 					vscode.window.showInformationMessage('Ask installed successfully!');
+	// 					break;
+	// 				}
+	// 				case ("darwin"): {
+	// 					exec(`cd ${folderPath} ; mkdir .askignore ; cd .askignore ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/mac.zip" ; tar -xf ask.zip ; rm ask.zip`, (error, stdout, stderr) => {
+	// 						if (error) {
+	// 							vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
+	// 							return;
+	// 						}
+	// 					});
+	// 					vscode.window.showInformationMessage('Ask installed successfully!');
+	// 					break;
+	// 				}
+	// 				case ("linux"): {
+	// 					exec(`cd ${folderPath} ; mkdir .askignore ; cd .askignore ; curl -o ask.zip "https://raw.githubusercontent.com/etmclovin/vscode-ask-mode/refs/heads/binary/linux.zip" ; tar -xf ask.zip ; rm ask.zip`, (error, stdout, stderr) => {
+	// 						if (error) {
+	// 							vscode.window.showErrorMessage(`Error installing ask: ${stderr}`);
+	// 							return;
+	// 						}
+	// 					});
+	// 					vscode.window.showInformationMessage('Ask installed successfully!');
+	// 					break;
+	// 				}
+	// 				default: {
+	// 					vscode.window.showErrorMessage(`Operating system not supported`);
+	// 					return;
+	// 				}
+	// 			}
+	// 		} catch (err: unknown) {
+	// 			const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+	// 			vscode.window.showErrorMessage(`An error occurred: ${errorMessage}`);
+	// 		}
+	// 	});
+	// });
 };
