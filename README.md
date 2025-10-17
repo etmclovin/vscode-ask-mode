@@ -4,8 +4,6 @@ being a VSCode extension for ask
 
 ## Features
 
-Install Ask with the click of a button, no prerequisites needed!
-
 Run Ask Scripts flawlessly within VSCode!
 
 ## Issue tracker
