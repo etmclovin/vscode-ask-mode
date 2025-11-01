@@ -12,7 +12,7 @@ If you find any bugs or have issues please open an issue on the github page and 
 
 ## Known Issues
 
-Everything is windows only atm, if you want this extension on your system contact me on discord (@mclovin.tm) and ill try help.
+Currently no known issues!
 
 ## Release Notes
 
